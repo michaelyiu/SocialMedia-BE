@@ -49,6 +49,15 @@ const startApolloServer = async (app, httpServer) => {
         plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
         context: async ({ req, res }) => {
             const user = await getMe(req.headers.authorization);
+            // @ts-ignore
+            res.header('Access-Control-Allow-Credentials', true);
+            res.header('Access-Control-Allow-Origin', '*');
+            res.header('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+            res.header('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+            if (req.method === 'OPTIONS') {
+                res.status(200).end();
+                return;
+            }
             return {
                 models,
                 me: user,
@@ -58,7 +67,7 @@ const startApolloServer = async (app, httpServer) => {
         introspection: true
     });
     await server.start();
-    server.applyMiddleware({ app });
+    server.applyMiddleware({ app, cors: corsOptions });
 };
 // console.log(`🚀 Server ready at ${url}`)
 startApolloServer(app, httpServer);
