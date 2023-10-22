@@ -8,6 +8,9 @@
     "compile": "npm run generate && tsc",
     "postinstall": "npm run compile",
     "start": "npm run compile && node ./dist/index.js",
+    "build": "rimraf dist && tsc",
+    "ts.check": "tsc --project tsconfig.json",
+    "add-build": "git add dist",
     "watch": "concurrently --names \"CodeGen,TS,Nodemon\" -c \"bgYellow, bgBlue, bgMagenta\" \"graphql-codegen --watch 'src/**/*.ts'\" \"nodemon ./dist/index.js \"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -35,6 +38,13 @@
     "concurrently": "^8.2.2",
     "dotenv": "^16.3.1",
     "nodemon": "^3.0.1",
+    "pre-commit": "^1.2.2",
+    "rimraf": "^5.0.5",
     "typescript": "^5.2.2"
-  }
+  },
+  "pre-commit": [
+    "ts.check",
+    "build",
+    "add-build"
+  ]
 }
