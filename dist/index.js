@@ -54,7 +54,8 @@ const startApolloServer = async (app, httpServer) => {
                 me: user,
                 secret: config.SECRET
             };
-        }
+        },
+        introspection: true
     });
     await server.start();
     server.applyMiddleware({ app });

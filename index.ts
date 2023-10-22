@@ -65,7 +65,8 @@ mongoose
           me: user,
           secret: config.SECRET
         };
-      }
+      },
+      introspection: true
     })
     await server.start()
     server.applyMiddleware({app})
