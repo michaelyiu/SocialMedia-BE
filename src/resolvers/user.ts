@@ -110,19 +110,19 @@ const resolvers: Resolvers = {
         return models.User.find({});
       }
     ),
-    // user: combineResolvers(
-    //   isAuthenticated,
-    //   async (parent, { email }, { models, me }, info) => {
-    //     // auth check for every query and mutation except for the signup mutation
-    //     return models.User.findOne({ email });
-    //   }
-    // )
+    user: combineResolvers(
+      isAuthenticated,
+      async (parent, { email }, { models, me }, info) => {
+        // auth check for every query and mutation except for the signup mutation
+        return models.User.findOne({ email });
+      }
+    )
   },
-  // User:{
-  //   profile: async (user, args, { models }) => {
-  //     return await models.Profile.findOne({ user: user.id })
-  //   }
-  // }
+  User:{
+    profile: async (user, args, { models }) => {
+      return await models.Profile.findOne({ user: user.id })
+    }
+  }
 }
 
 
