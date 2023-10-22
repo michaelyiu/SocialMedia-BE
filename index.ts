@@ -24,10 +24,10 @@ app.use(express.json())
 
 const httpServer = http.createServer(app)
 
-const configDirectory = path.resolve(process.cwd(), "config")
+const configDirectory = path.resolve(process.cwd(), "src")
 
 
-const typeDefs = readFileSync(path.join(configDirectory, "./src/schema.graphql"), { encoding: "utf-8" })
+const typeDefs = readFileSync(path.join(configDirectory, "schema.graphql"), { encoding: "utf-8" })
 
 const db = config.MONGO_URI;
 
