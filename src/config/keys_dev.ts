@@ -1,5 +1,5 @@
 const keysDev = {
-  MONGO_URI: "mongodb+srv://michaeloyiu:kC6UPJpAgEHQQgGO@cluster0.k2gqwxw.mongodb.net/?retryWrites=true&w=majority",
+  MONGO_URI: "mongodb+srv://vercel-admin-user:wPHLG6RvLsf2qqDr@cluster0.k2gqwxw.mongodb.net/?retryWrites=true&w=majority",
   SECRET: "secret"
 };
 
