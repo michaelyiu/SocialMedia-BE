@@ -24,7 +24,6 @@ const typeDefs = readFileSync(path.join(configDirectory, "schema.graphql"), { en
 const db = config.MONGO_URI;
 mongoose
     .connect(db)
-    // .connect(db, { useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true })
     .then(() => console.log("MongoDB Connected"))
     .catch(err => console.log(err));
 //validate jwt then set me in graphql server context

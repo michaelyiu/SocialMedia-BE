@@ -33,7 +33,6 @@ const db = config.MONGO_URI;
 
 mongoose
   .connect(db)
-  // .connect(db, { useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true })
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
 

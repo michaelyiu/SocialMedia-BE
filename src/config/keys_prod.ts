@@ -1,5 +1,5 @@
 const keysDev = {
-  MONGO_URI: process.env.MONGODB_URI,
+  MONGODB_URI: process.env.MONGODB_URI,
   SECRET: process.env.SECRET
 };
 
