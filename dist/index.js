@@ -18,7 +18,7 @@ const corsOptions = {
 };
 app.use(express.json());
 const httpServer = http.createServer(app);
-const typeDefs = readFileSync("./schema.graphql", { encoding: "utf-8" });
+const typeDefs = readFileSync("./src/schema.graphql", { encoding: "utf-8" });
 const db = config.MONGO_URI;
 mongoose
     .connect(db)
