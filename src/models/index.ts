@@ -1,4 +1,5 @@
-import User from './User.js'; // Import User as the default export
+import User from './User.js';
+import Profile from './Profile.js'; 
 
-const models = { User };
+const models = { User, Profile };
 export default models;

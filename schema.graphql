@@ -31,9 +31,120 @@ type Token {
 type Mutation {
   signup(input: SignupInput): User
   login(input: LoginInput): Token
+
+  createExperience(
+      title: String!
+      company: String!
+      location: String
+      from: String!
+      to: String
+      current: Boolean
+      description: String
+    ): Experience
+
+    editExperience(
+      id: ID!
+      title: String!
+      company: String!
+      location: String
+      from: String!
+      to: String
+      current: Boolean
+      description: String
+    ): Experience
+
+    deleteExperience(id: ID!): ID
+
+    createEducation(
+      school: String!
+      degree: String!
+      fieldOfStudy: String!
+      from: String!
+      to: String
+      current: Boolean
+      description: String
+    ): Education
+
+    editEducation(
+      id: ID!
+      school: String!
+      degree: String!
+      fieldOfStudy: String!
+      from: String!
+      to: String
+      current: Boolean
+      description: String
+    ): Education
+
+    deleteEducation(id: ID!): ID
+
+    updateProfile(
+      handle: String!
+      company: String
+      website: String
+      location: String
+      status: String
+      skills: String!
+      bio: String
+      githubUsername: String
+    ): Profile
+
+    deleteProfile: Boolean
 }
 
 type Query {
   hello: String
   users: [User]
+  user(email: String): User
+  experience: Experience
+  education: Education
+  profile(email: String): Profile
+  profiles: [Profile]
+  profileByHandle(handle: String!): Profile
+}
+
+type User {
+  name: String!
+  email: String!
+  avatar: String
+  date: String
+  profile: Profile
+}
+scalar Date
+type Profile {
+  user: User!
+  handle: String!
+  company: String
+  website: String
+  location: String
+  status: String
+  skills: [String]!
+  bio: String
+  githubUsername: String
+  experience: [Experience]
+  education: [Education]
+  # social: Social
+  date: Date
+}
+
+type Experience {
+  id: ID!
+  title: String!
+  company: String!
+  location: String
+  from: String!
+  to: String
+  current: Boolean
+  description: String
+}
+
+type Education {
+  id: ID!
+  school: String!
+  degree: String!
+  fieldOfStudy: String!
+  from: String!
+  to: String
+  current: Boolean
+  description: String
 }

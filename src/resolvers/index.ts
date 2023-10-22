@@ -1,7 +1,9 @@
 import { Resolvers } from "../__generated__/resolvers-types"
-import Query from "./queries.js"
-import Mutation from "./mutations.js"
+import user from "./user.js"
+import profile from "./profile.js"
+import experience from "./experience.js"
+import education from "./education.js"
 
-const resolvers: Resolvers = { Query, Mutation }
+const resolvers: Resolvers = [ user, profile, experience, education ]
 
 export default resolvers
