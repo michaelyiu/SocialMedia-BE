@@ -12,7 +12,7 @@ import config from "./src/config/keys.js"
 import models from "./src/models/index.js"
 import jwt from "jsonwebtoken"
 import { GraphQLError } from "graphql";
-
+import path from "path"
 
 const app = express()
 const corsOptions = {
@@ -24,7 +24,10 @@ app.use(express.json())
 
 const httpServer = http.createServer(app)
 
-const typeDefs = readFileSync("./src/schema.graphql", { encoding: "utf-8" })
+const configDirectory = path.resolve(process.cwd(), "config")
+
+
+const typeDefs = readFileSync(path.join(configDirectory, "./src/schema.graphql"), { encoding: "utf-8" })
 
 const db = config.MONGO_URI;
 
