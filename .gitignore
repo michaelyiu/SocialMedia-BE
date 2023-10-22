@@ -1,5 +1,4 @@
 # dist
 node_modules
-src/config/keys_dev.ts
 
 package-lock.json
