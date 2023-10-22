@@ -3,7 +3,7 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import resolvers from "./src/resolvers/index.js";
 import { readFileSync } from "fs";
 import mongoose from "mongoose";
-import config from "./src/config/keys.js";
+import config from "./src/config/keys";
 import models from "./src/models/index.js";
 import jwt from "jsonwebtoken";
 import { GraphQLError } from "graphql";
