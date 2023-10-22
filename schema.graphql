@@ -1,3 +1,4 @@
+scalar Date
 
 type User {
   id: ID
@@ -42,54 +43,77 @@ type Mutation {
       description: String
     ): Experience
 
-    editExperience(
-      id: ID!
-      title: String!
-      company: String!
-      location: String
-      from: String!
-      to: String
-      current: Boolean
-      description: String
-    ): Experience
+  editExperience(
+    id: ID!
+    title: String!
+    company: String!
+    location: String
+    from: String!
+    to: String
+    current: Boolean
+    description: String
+  ): Experience
 
-    deleteExperience(id: ID!): ID
+  deleteExperience(id: ID!): ID
 
-    createEducation(
-      school: String!
-      degree: String!
-      fieldOfStudy: String!
-      from: String!
-      to: String
-      current: Boolean
-      description: String
-    ): Education
+  createEducation(
+    school: String!
+    degree: String!
+    fieldOfStudy: String!
+    from: String!
+    to: String
+    current: Boolean
+    description: String
+  ): Education
 
-    editEducation(
-      id: ID!
-      school: String!
-      degree: String!
-      fieldOfStudy: String!
-      from: String!
-      to: String
-      current: Boolean
-      description: String
-    ): Education
+  editEducation(
+    id: ID!
+    school: String!
+    degree: String!
+    fieldOfStudy: String!
+    from: String!
+    to: String
+    current: Boolean
+    description: String
+  ): Education
 
-    deleteEducation(id: ID!): ID
+  deleteEducation(id: ID!): ID
 
-    updateProfile(
-      handle: String!
-      company: String
-      website: String
-      location: String
-      status: String
-      skills: String!
-      bio: String
-      githubUsername: String
-    ): Profile
+  updateProfile(
+    handle: String!
+    company: String
+    website: String
+    location: String
+    status: String
+    skills: String!
+    bio: String
+    githubUsername: String
+  ): Profile
 
-    deleteProfile: Boolean
+  deleteProfile: Boolean
+
+
+  createPost(
+    text: String!
+    name: String
+    handle: String
+    avatar: String
+  ): Post
+
+  deletePost(id: ID!): Boolean
+
+  createComment(
+    post_id: String!
+    text: String!
+    name: String
+    handle: String
+    avatar: String
+  ): Comment
+
+  deleteComment(post_id: String!, comment_id: String!): Boolean
+
+  addLike(post_id: String!): Like
+  removeLike(post_id: String!): Like
 }
 
 type Query {
@@ -101,6 +125,10 @@ type Query {
   profile(email: String): Profile
   profiles: [Profile]
   profileByHandle(handle: String!): Profile
+  post(id: ID!): Post
+  posts: [Post]
+  # ALL comments for ONE post, no need to show ALL comments for ALL posts
+  comments(post_id: String!): [Comment]
 }
 
 type User {
@@ -110,7 +138,6 @@ type User {
   date: String
   profile: Profile
 }
-scalar Date
 type Profile {
   user: User!
   handle: String!
@@ -147,4 +174,31 @@ type Education {
   to: String
   current: Boolean
   description: String
+}
+
+type Post {
+  id: ID!
+  text: String!
+  name: String
+  handle: String
+  avatar: String
+  likes: [Like]
+  comments: [Comment]
+  user: String
+  date: Date
+}
+
+type Comment {
+  id: ID!
+  text: String!
+  name: String
+  handle: String
+  avatar: String
+  date: String
+  user: String
+}
+
+type Like {
+  id: ID!
+  user: String
 }
