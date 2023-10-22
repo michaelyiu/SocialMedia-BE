@@ -103,13 +103,10 @@ const resolvers: Resolvers = {
     },
   },
   Query: {
-    users: combineResolvers(
-      isAuthenticated,
-      async (parent, args, { models, me }, info) => {
-        // auth check for every query and mutation except for the signup mutation
-        return models.User.find({});
-      }
-    ),
+    users: async (parent, args, { models, me }, info) => {
+      // auth check for every query and mutation except for the signup mutation
+      return models.User.find({});
+    },
     user: combineResolvers(
       isAuthenticated,
       async (parent, { email }, { models, me }, info) => {
