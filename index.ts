@@ -29,10 +29,9 @@ const configDirectory = path.resolve(process.cwd(), "src")
 
 const typeDefs = readFileSync(path.join(configDirectory, "schema.graphql"), { encoding: "utf-8" })
 
-const db = config.MONGO_URI;
+const db = config.MONGODB_URI;
 
-mongoose
-  .connect(db)
+mongoose.connect(db)
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
 
@@ -89,4 +88,5 @@ mongoose
 // console.log(`🚀 Server ready at ${url}`)
 
 startApolloServer(app, httpServer)
+app.listen(3000, () => console.info("Server started"));
 export default httpServer

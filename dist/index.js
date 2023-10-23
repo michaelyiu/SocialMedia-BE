@@ -21,9 +21,8 @@ app.use(express.json());
 const httpServer = http.createServer(app);
 const configDirectory = path.resolve(process.cwd(), "src");
 const typeDefs = readFileSync(path.join(configDirectory, "schema.graphql"), { encoding: "utf-8" });
-const db = config.MONGO_URI;
-mongoose
-    .connect(db)
+const db = config.MONGODB_URI;
+mongoose.connect(db)
     .then(() => console.log("MongoDB Connected"))
     .catch(err => console.log(err));
 //validate jwt then set me in graphql server context
@@ -70,4 +69,5 @@ const startApolloServer = async (app, httpServer) => {
 };
 // console.log(`🚀 Server ready at ${url}`)
 startApolloServer(app, httpServer);
+app.listen(3000, () => console.info("Server started"));
 export default httpServer;
