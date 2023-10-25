@@ -67,7 +67,6 @@ const startApolloServer = async (app, httpServer) => {
     await server.start();
     server.applyMiddleware({ app, cors: corsOptions });
 };
-// console.log(`🚀 Server ready at ${url}`)
 startApolloServer(app, httpServer);
 app.listen(3000, () => console.info("Server started"));
 export default httpServer;

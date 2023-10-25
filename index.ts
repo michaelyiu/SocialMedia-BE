@@ -84,9 +84,6 @@ mongoose.connect(db)
     
   }
 
-
-// console.log(`🚀 Server ready at ${url}`)
-
 startApolloServer(app, httpServer)
 app.listen(3000, () => console.info("Server started"));
 export default httpServer
