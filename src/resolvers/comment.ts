@@ -14,7 +14,6 @@ export default {
     createComment: combineResolvers(
       isAuthenticated,
       async (parent, args, { me, models }, info) => {
-        //name and avatar can come from the front end.....
         const post = await models.Post.findById(args.post_id);
         const newComment = await models.Profile.findOne({ user: me.id }).then(profile => {
           const commentToAdd = {
